@@ -1,5 +1,5 @@
-Keeping Directories In Sync
-===========================
+
+# Keeping Directories In Sync
 
 A grunt task to keep directories in sync. It is very similar to grunt-contrib-copy
 but tries to copy only those files that has actually changed.

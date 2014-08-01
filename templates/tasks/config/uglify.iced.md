@@ -1,6 +1,5 @@
 
-Minify files with UglifyJS
-==========================
+# Minify files with UglifyJS
 
 Minifies client-side javascript `assets`.
 

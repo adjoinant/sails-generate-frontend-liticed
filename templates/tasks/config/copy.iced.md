@@ -1,14 +1,13 @@
 
-Copy files and folders
-======================
+# Copy files and folders
 
-dev task config
----------------
+## dev task config
+
 Copies all directories and files, except coffeescript and less files, from the sails
 assets folder into the `.tmp/public` directory.
 
-build task config
------------------
+## build task config
+
 Copies all directories and files from the `.tmp/public` directory into a `www` directory.
 
 For usage docs see: [Github](https://github.com/gruntjs/grunt-contrib-copy)

@@ -1,6 +1,5 @@
 
-Run predefined tasks
-====================
+# Run predefined tasks
 
 Watch for changes on
 - files in the `assets` folder

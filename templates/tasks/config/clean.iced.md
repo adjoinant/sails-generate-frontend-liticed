@@ -1,6 +1,5 @@
 
-Clean files and folders
-=======================
+# Clean files and folders
 
 This grunt task is configured to clean out the contents in the .tmp/public of your
 sails project.

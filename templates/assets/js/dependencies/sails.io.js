@@ -251,34 +251,44 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
           _emitFrom(socket, queue[i]);
         }
       }
-
-      // Now empty the queue to remove it as a source of additional complexity.
-      queue = null;
     }
 
 
 
     /**
-     * Send a JSONP request.
+     * Send an AJAX request.
      * 
      * @param  {Object}   opts [optional]
      * @param  {Function} cb
      * @return {XMLHttpRequest}
      */
 
-    function jsonp(opts, cb) {
+    function ajax(opts, cb) {
       opts = opts || {};
+      var xmlhttp;
 
       if (typeof window === 'undefined') {
         // TODO: refactor node usage to live in here
         return cb();
       }
 
-      var scriptEl = document.createElement('script');
-      window._sailsIoJSConnect = cb;
-      scriptEl.src = opts.url;
-      document.getElementsByTagName('head')[0].appendChild(scriptEl);
+      if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+      } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
 
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          cb(xmlhttp.responseText);
+        }
+      };
+
+      xmlhttp.open(opts.method, opts.url, true);
+      xmlhttp.send();
+      return xmlhttp;
     }
 
 
@@ -583,7 +593,7 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
       // Defaults to development unless this script was fetched from a URL
       // that ends in `*.min.js` or '#production' (may also be manually overridden.)
       // 
-      environment: urlThisScriptWasFetchedFrom.match(/(\#production|\.min\.js)/g) ? 'production' : 'development'
+      environment: urlThisScriptWasFetchedFrom.match(/(\#production|\.min\.js)/) ? 'production' : 'development'
     };
 
 
@@ -641,7 +651,7 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
       }
 
       // If this is an attempt at a cross-origin or cross-port
-      // socket connection, send a JSONP request first to ensure
+      // socket connection, send an AJAX request first to ensure
       // that a valid cookie is available.  This can be disabled
       // by setting `io.sails.useCORSRouteToGetCookie` to false.
       var isXOrigin = io.sails.url && true; //url.match();
@@ -663,7 +673,7 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
         // Make the AJAX request (CORS)
         if (typeof window !== 'undefined') {
 
-          jsonp({
+          ajax({
             url: xOriginCookieURL,
             method: 'GET'
           }, goAheadAndActuallyConnect);

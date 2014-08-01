@@ -1,6 +1,5 @@
 
-Grunt/pipeline.js
-=================
+# Grunt/pipeline.js
 
 The order in which your css, javascript, and template files should be
 compiled and linked from your views and static HTML files.
@@ -13,6 +12,7 @@ CSS files to inject in order
 
 (if you're using LESS with the built-in default config, you'll want
 to change `assets/styles/importer.less` instead.)
+
     cssFilesToInject = ["styles/**/*.css"]
 
 Client-side javascript files to inject in order

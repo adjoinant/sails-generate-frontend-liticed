@@ -1,6 +1,5 @@
 
-Precompiles Underscore templates to a `.jst` file
-=================================================
+# Precompiles Underscore templates to a `.jst` file
 
 (i.e. basically it takes HTML files and turns them into tiny little
  javascript functions that you pass data to and return HTML. This can

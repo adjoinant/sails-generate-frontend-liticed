@@ -1,6 +1,5 @@
 
-Compiles LESS files into CSS
-============================
+# Compiles LESS files into CSS
 
 Only the `assets/styles/importer.less` is compiled.
 This allows you to control the ordering yourself, i.e. import your

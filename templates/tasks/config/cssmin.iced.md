@@ -1,6 +1,5 @@
 
-Compress CSS files
-==================
+# Compress CSS files
 
 Minifies css files and places them into `.tmp/public/min` directory.
 

@@ -1,6 +1,5 @@
 
-Compile CoffeeScript files to JavaScript
-========================================
+# Compile CoffeeScript files to JavaScript
 
 Compiles coffeeScript files from `assest/js` into Javascript and places them into
 `.tmp/public/js` directory.
